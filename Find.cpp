@@ -36,21 +36,19 @@ int count_positions(int arr[field_size][field_size],int** arr_of_positions)
 		{
 			if (arr[i][k] == 1)
 			{
-
 				arr_of_positions[pos][0] = i;
 				arr_of_positions[pos][1] = k;
 				pos++;
-				out++;
 			}
 		}
 	}
 	return out;
 }
 
-int build_tree(int arr[field_size][field_size],leav root)
-{
+int build_tree(leav root)
+{ 
 	int** arr_of_positions = 0;
-	int count = count_positions(arr,arr_of_positions);
+	int count = count_positions(root.field,arr_of_positions);
 	arr_of_positions = new int*[count];
 	for (int k = 0; k < count; k++)
 	{
@@ -94,17 +92,16 @@ int main()
 			else field[i][k] = 1;
 		}
 	}
-	leav l;
-	l.parent = &l;
+	leav root;
 	for (int k = 0; k < field_size; k++)
 	{
 		for (int i = 0; i < field_size; i++)
 		{
-			l.field[k][i] = field[k][i];
+			root.field[k][i] = field[k][i];
 		}
 	}
-	build_tree(field, l);
-
+	build_tree(root);
+	
 
 
 
