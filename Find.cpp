@@ -20,10 +20,8 @@ int count_positions(int arr[field_size][field_size],int** arr_of_positions)
 			}
 		}
 	}
-	arr_of_positions = new int*[out];
 	for (int i = 0; i < out; i++)
 	{
-		arr_of_positions[i] = new int[2];
 		for (int k = 0; k < 2; k++)
 		{
 			arr_of_positions[i][k] = -1;
@@ -47,16 +45,15 @@ int count_positions(int arr[field_size][field_size],int** arr_of_positions)
 
 int build_tree(leav root)
 { 
-	int** arr_of_positions = 0;
-	int count = count_positions(root.field,arr_of_positions);
-	arr_of_positions = new int*[count];
-	for (int k = 0; k < count; k++)
+	int size = (field_size - 2)*(field_size - 2);
+	int** arr_of_positions = new int*[size];
+	for (int i = 0; i < size; i++)
 	{
-		arr_of_positions[count] = new int[2];
-		cout << arr_of_positions[count][0] << endl;
-		cout << arr_of_positions[count][1] << endl;
+		arr_of_positions[i] = new int[2];
+		arr_of_positions[i][0] = 0;
+		arr_of_positions[i][1] = 0;
 	}
-	system("pause>nul");
+	int count = count_positions(root.field,arr_of_positions);
 	return 0;
 }
 
@@ -111,7 +108,7 @@ int main()
 
 
 
-	/*for (int i = 0; i <= field_size - 1; i++)
+	for (int i = 0; i <= field_size - 1; i++)
 	{
 		for (int k = 0; k <= field_size - 1; k++)
 		{
@@ -119,5 +116,5 @@ int main()
 		}
 		cout << endl;
 	}
-	system("pause>nul");*/
+	system("pause>nul");
 }

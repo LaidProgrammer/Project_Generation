@@ -7,6 +7,7 @@ struct leav
 	int field[field_size][field_size];
 	leav* parent;
 	leav** children;
+	int len_of_children;
 };
 
 class figure
