@@ -1,13 +1,15 @@
+#include <string>
 using namespace std;
 
-const int field_size = 11;
+const int field_size = 9;
 const int stone_gen = 5;
 struct leav
 {
-	int field[field_size][field_size];
 	leav* parent;
-	leav** children;
+	leav* children;
 	int len_of_children;
+	string name;
+	string dir;
 };
 
 class figure
@@ -15,7 +17,7 @@ class figure
 	public:
 		
 	protected:
-		virtual int stay(int in_arr[field_size][field_size], int arr[field_size][field_size], int x, int y)
+		virtual int stay(int** in_arr, int** arr, int x, int y)
 		{
 			return 0;
 		}
@@ -23,7 +25,7 @@ class figure
 		{
 			
 		}*/
-		void copy_field(int field[field_size][field_size], int out_field[field_size][field_size])
+		static void copy_field(int** field, int** out_field)
 		{
 			for (int i = 0; i <= field_size - 1; i++)
 			{
@@ -44,7 +46,7 @@ class queen : figure
 		{
 
 		}
-		int stay(int in_arr[field_size][field_size], int arr[field_size][field_size], int x, int y)
+		static int stay(int** in_arr, int** arr, int x, int y)
 		{
 			for (int i = 0; i <= field_size - 1; i++)
 			{
@@ -71,7 +73,7 @@ class queen : figure
 				arr[x + l][y + l] = 2;
 			}
 
-			for (m = 1;  (arr[x][y - m] != 0) && (arr[x - m][y] != 4); m++)
+			for (m = 1;  (arr[x][y - m] != 0) && (arr[x][y - m] != 4); m++)
 			{
 				arr[x][y - m] = 2;
 			}
